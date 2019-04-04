@@ -2,7 +2,7 @@
 
 from flask import Flask
 from flask import request
-from flask import render_template_string
+from flask import render_template_string, render_template
 from flask import jsonify
 
 # from flask_jwt_simple import  JWTManager
@@ -14,19 +14,34 @@ from webargs import fields
 from webargs.flaskparser import use_kwargs
 
 import request_handlers as rh
-from utils import to_snake_dict, to_camel_dict
+from util import to_snake_dict, to_camel_dict
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder= "../static/dist", static_folder='../static/dist')
 # app.config['SECRET_KEY'] = 'my_secret'
 # app.config['JWT_SECRET_KEY'] = 'my_secret'
 # jwt = JWTManager(app)
 
 
+### API ENDPOINTS ###
 
-@app.route('/')
-def home():
-    return render_template_string("<body><h1>Yo this is the Margin Server!!!</h1></body>")
+@app.route('/api', methods=['GET'])
+def api():
+    return render_template_string("""
+    <h3>API endpoints</h3>
+    <ul>
+      <li>/api</li>
+    </ul>
+    """)
+
+
+### SERVE THE REACT APP ON ALL OTHER PATHS ###
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def home(path):
+    print('path: ', path)
+    return render_template('index.html')
+
 
 
 
@@ -88,6 +103,6 @@ if __name__ == '__main__':
     # print "password is: DeXPLORER"
     # http://www.akadia.com/services/ssh_test_certificate.html
     # passphrase: DeXPLORER
-    context = ('./certs/server.crt', './certs/server.key')
+    # context = ('./certs/server.crt', './certs/server.key')
     # app.run(host="localhost", port=5000, debug=True, threaded=False, ssl_context=context)
     app.run(host="0.0.0.0", port=5000, debug=True)#, ssl_context=context)

@@ -1,29 +1,40 @@
 const path = require('path');
 
 module.exports = {
+  mode: 'development',
+
   entry: [
     './src/index.js'
   ],
-
   output: {
-    filename: 'index.js',
-    path: path.join(__dirname, '../', 'dist')
+    filename: 'bundle.js',
+    path: path.join(__dirname, 'dist')
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.webpack.js', '.js', '.jsx', '.json'],
     modules: ['node_modules']
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(jsx|js)?$/,
         loader: 'babel-loader',
+        type: 'javascript/auto',
         exclude: /(node_modules)/,
-        // include: path.join(__dirname, '../'),
-        query: {
-          presets: ['es2015', 'react', 'stage-0']
+        options: {
+          babelrc: false,
+          plugins: [
+            // Stage 0
+            '@babel/plugin-proposal-function-bind',
+          ],
+          presets: [
+              '@babel/env',
+              // '@babel/stage-0',
+              '@babel/react',
+              // '@babel/es2015',
+            ],
         }
       }
     ]
