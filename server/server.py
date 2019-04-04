@@ -1,4 +1,5 @@
 """ Server entrypoint. Commented portions show user authentication. """
+import os
 
 from flask import Flask
 from flask import request
@@ -18,8 +19,8 @@ from util import to_snake_dict, to_camel_dict
 
 
 app = Flask(__name__, template_folder= "../static/dist", static_folder='../static/dist')
-# app.config['SECRET_KEY'] = 'my_secret'
-# app.config['JWT_SECRET_KEY'] = 'my_secret'
+# app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
+# app.config['JWT_SECRET_KEY'] = os.environ['JWT_SECRET_KEY']
 # jwt = JWTManager(app)
 
 
