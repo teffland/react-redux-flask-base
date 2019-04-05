@@ -9,20 +9,20 @@ export const constants = {
   SET_COUNT:'SET_COUNT'
 }
 console.log(constants)
-const c = constants
+const C = constants
 
 // Actions
 // publish new info to reducers that ,ay effect state
 export const actions = {
   incrementCount: () => ({
-    type:c.INCREMENT_COUNT
+    type:C.INCREMENT_COUNT
   }),
 
   decrementCount: () => ({
-    type:c.DECREMENT_COUNT
+    type:C.DECREMENT_COUNT
   }),
   setCount: (count) => ({
-    type:c.SET_COUNT,
+    type:C.SET_COUNT,
     count
   })
 
@@ -41,13 +41,13 @@ export const initialState = {
 export default (state = initialState, action) => {
   let newState = { ...state } // returned state needs to be new object
   switch(action.type) {
-    case c.INCREMENT_COUNT:
+    case C.INCREMENT_COUNT:
       newState.count += 1
       return newState
-    case c.DECREMENT_COUNT:
+    case C.DECREMENT_COUNT:
       newState.count -= 1
       return newState
-    case c.SET_COUNT:
+    case C.SET_COUNT:
       newState.count += action.count
       return newState
   }

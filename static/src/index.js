@@ -11,9 +11,9 @@ import { ConnectedRouter } from 'connected-react-router'
 
 import store, { history } from './state/store'
 
-import Home from './components/Home'
-import Counter from './components/Counter'
-import FourOhFour from './components/FourOhFour'
+import Home from './components/pages/Home'
+import Counter from './components/pages/Counter'
+import FourOhFour from './components/pages/FourOhFour'
 
 const appContainer = document.getElementById('react-app-container')
 render(

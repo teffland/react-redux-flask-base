@@ -5,7 +5,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { actions, selectors } from '../state/Counter'
+import { actions, selectors as S} from '../../state/Counter'
 
 class Counter extends Component {
   constructor(props) {
@@ -39,7 +39,7 @@ const mapStateToProps = (state) => {
   const counter =  state.counter
   return {
     count:counter.count,
-    countSquared:selectors.countSquared(counter)
+    countSquared:S.countSquared(counter)
   }
 }
 
