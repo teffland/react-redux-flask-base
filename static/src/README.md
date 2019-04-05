@@ -1,8 +1,8 @@
 The app is organized as follows:
 
-`components` stores all UI/View elements (including containers).
+`components` stores all UI/View elements (including containers and selectors).
 
-`state` stores all state management (store, actions, reducers, selectors, constants).
+`state` stores all state management (store, actions, reducers, constants).
 
 Different features for the app should be contained in their own files or folders,
 with matching names for in  `components` and `state` and should always be capitalized.
